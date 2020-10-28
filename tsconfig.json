@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["es2019"],
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "outDir": "dist",
+    "paths": {
+      "config/*": ["config/*"],
+      "modules/*": ["modules/*"],
+      "utils/*": ["utils/*"],
+      "*": ["*"]
+    },
+    "plugins": [
+      { "transform": "@zerollup/ts-transform-paths" }
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    //        "jsx": "react",
+    //        "jsxFactory": "jsx",
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strict": true,
+    "typeRoots": ["node_modules/@types", "typings"]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

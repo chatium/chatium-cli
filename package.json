@@ -1,0 +1,64 @@
+{
+  "name": "chatium",
+  "version": "1.0.0",
+  "description": "Chatium Cli Tool",
+  "main": "main.js",
+  "bin": "./dist/main.js",
+  "scripts": {
+    "start": "node dist/main.js",
+    "start:dev": "cross-env NODE_ENV=development concurrently --kill-others --names \"TS,NODE\" -c \"blue.bold,green.bold\" \"ttsc -p tsconfig.json -w\" \"nodemon -q -w dist dist/main.js\"",
+    "build": "rimraf ./dist && ttsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chatium/chatium-cli.git"
+  },
+  "author": "Chatium Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chatium/chatium-cli/issues"
+  },
+  "homepage": "https://github.com/chatium/chatium-cli#readme",
+  "dependencies": {
+    "@types/clui": "~0.3.0",
+    "axios": "0.19.2",
+    "chalk": "~4.1.0",
+    "cli-table3": "~0.6.0",
+    "clui": "~0.3.6",
+    "commander": "~6.1.0",
+    "config": "~3.3.2",
+    "dotenv": "8.2.0",
+    "inquirer": "~7.3.3",
+    "jsonwebtoken": "~8.5.1",
+    "nanoid": "3.1.12",
+    "open": "~7.3.0",
+    "ora": "~5.1.0",
+    "socket.io": "~2.3.0",
+    "socket.io-client": "~2.3.1",
+    "yargs": "~16.1.0"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.36",
+    "@types/dotenv": "8.2.0",
+    "@types/inquirer": "~7.3.1",
+    "@types/jsonwebtoken": "~8.5.0",
+    "@types/node": "14.10.3",
+    "@types/socket.io": "~2.1.11",
+    "@types/socket.io-client": "~1.4.34",
+    "@typescript-eslint/eslint-plugin": "4.1.1",
+    "@typescript-eslint/parser": "4.1.1",
+    "@zerollup/ts-transform-paths": "1.7.18",
+    "concurrently": "5.3.0",
+    "cross-env": "7.0.2",
+    "eslint": "7.9.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-simple-import-sort": "5.0.3",
+    "nodemon": "2.0.4",
+    "rimraf": "3.0.2",
+    "ts-node": "9.0.0",
+    "ts-node-dev": "1.0.0-pre.62",
+    "ttypescript": "1.5.12",
+    "typescript": "4.0.2"
+  }
+}
