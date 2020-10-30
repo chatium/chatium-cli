@@ -44,5 +44,9 @@ export async function loginCommand(options: Options) {
       await open(tokenUrl)
       spinner.start()
     }, 1000)
+
+    socket.on('error', (error: Error) => {
+      console.log(chalk.red('– Socket error:'), error.message)
+    });
   })
 }
