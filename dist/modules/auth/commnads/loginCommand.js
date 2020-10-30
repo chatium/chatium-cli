@@ -36,6 +36,9 @@ async function loginCommand(options) {
             await open_1.default(tokenUrl);
             spinner.start();
         }, 1000);
+        socket.on('error', (error) => {
+            console.log(chalk_1.default.red('– Socket error:'), error.message);
+        });
     });
 }
 exports.loginCommand = loginCommand;
