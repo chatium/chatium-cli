@@ -1,7 +1,11 @@
 import axios from 'axios'
 import { config } from '../config'
 
-let baseUrl = 'https://local.chatium.io'
+let baseUrl = 'https://chatium.com'
+
+export function setApiLocalBaseUrl() {
+  baseUrl = 'https://local.chatium.io'
+}
 
 const instance = axios.create()
 

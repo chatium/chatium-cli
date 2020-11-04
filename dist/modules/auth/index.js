@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
-const checkCommand_1 = require("./commnads/checkCommand");
-const loginCommand_1 = require("./commnads/loginCommand");
-const logoutCommand_1 = require("./commnads/logoutCommand");
+const checkCommand_1 = require("./commands/checkCommand");
+const loginCommand_1 = require("./commands/loginCommand");
+const logoutCommand_1 = require("./commands/logoutCommand");
 function auth(yargs) {
     yargs
         .command('login [--local]', 'Login', async (yargs) => loginCommand_1.loginCommand(yargs.options({

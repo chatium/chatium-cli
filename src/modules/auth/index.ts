@@ -1,8 +1,8 @@
 import yargs from 'yargs'
 
-import { checkCommand } from './commnads/checkCommand'
-import { loginCommand } from './commnads/loginCommand'
-import { logoutCommand } from './commnads/logoutCommand'
+import { checkCommand } from './commands/checkCommand'
+import { loginCommand } from './commands/loginCommand'
+import { logoutCommand } from './commands/logoutCommand'
 
 export function auth(yargs: yargs.Argv) {
   yargs

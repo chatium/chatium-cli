@@ -1,10 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.api = void 0;
+exports.api = exports.setApiLocalBaseUrl = void 0;
 const tslib_1 = require("tslib");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 const config_1 = require("../config");
-let baseUrl = 'https://local.chatium.io';
+let baseUrl = 'https://chatium.com';
+function setApiLocalBaseUrl() {
+    baseUrl = 'https://local.chatium.io';
+}
+exports.setApiLocalBaseUrl = setApiLocalBaseUrl;
 const instance = axios_1.default.create();
 instance.interceptors.request.use(function (data) {
     data.headers['accept'] = 'application/json, text/plain, */*, application/chatium.v1+json';
