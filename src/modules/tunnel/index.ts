@@ -1,19 +1,33 @@
 import { customAlphabet } from 'nanoid'
-import yargs from 'yargs'
+import { Arguments, CommandModule } from 'yargs'
 
 import { openCommand } from './commands/openCommand'
 
-export function tunnel(yargs: yargs.Argv) {
-  const options = yargs.options({
-      server: { type: 'string', default: 'wss://lt.chatium.io' },
-      domain: { type: 'string', default: customAlphabet('qwertyuiopasdfghjklzxcvbnm1234567890', 8)() },
-    }).parse()
+export const tunnel: CommandModule = {
+  command: 'tunnel <port>',
+  describe: 'Websocket tunnel client for convenient Chatium app development',
+  builder: (yargs) => yargs
+    .demandCommand(1)
+    .options({
+      server: {
+        type: 'string',
+        default: 'wss://lt.chatium.io',
+        description: 'Custom websocket server',
+      },
+      domain: {
+        type: 'string',
+        default: customAlphabet('qwertyuiopasdfghjklzxcvbnm1234567890', 8)(),
+        description: 'Custom domain prefix (default random generated)',
+      },
+    }),
+  handler: async (args: Arguments) => {
+    const port = parseInt(args._.pop()!)
 
-  const port = parseInt(yargs.demandCommand(1).parse()['_'].pop()!)
-
-  openCommand({
-    server: options.server,
-    domain: options.domain,
-    port
-  })
+    await openCommand({
+      server: args.server as string,
+      domain: args.domain as string,
+      port
+    })
+  }
 }
+
