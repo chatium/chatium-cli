@@ -1,29 +1,35 @@
+import { CommandModule } from 'yargs'
 import chalk from 'chalk'
 import ora from 'ora'
-import { api } from 'api'
 import Table from 'cli-table3'
 
-export async function listCommand() {
-  const spinner = ora('Fetching applications...').start()
-  try {
-    const response = await api.get('/api/dev/app')
-    spinner.stop()
+import { api } from 'api'
 
-    const slugWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.slug.length + 2), 0)
-    const keyWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.api_key.length + 2), 0)
-    const secretWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.api_secret.length + 2), 0)
+export const listCommand: CommandModule = {
+  command: 'list',
+  describe: 'List applications',
+  handler: async () => {
+    const spinner = ora('Fetching applications...').start()
+    try {
+      const response = await api.get('/api/dev/app')
+      spinner.stop()
 
-    const table = new Table({
-      head: ['Slug', 'Key', 'Secret'],
-      colWidths: [slugWidth, keyWidth, secretWidth],
-      style: { head: ['white']}
-    })
-    response.data.forEach((app: App) => table.push([app.slug, app.api_key, app.api_secret]))
+      const slugWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.slug.length + 2), 0)
+      const keyWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.api_key.length + 2), 0)
+      const secretWidth = response.data.reduce((result: number, app: App) => Math.max(result, app.api_secret.length + 2), 0)
 
-    console.log(table.toString());
-  } catch (e) {
-    spinner.stop()
-    console.log(chalk.red('– Error: ' + chalk.bold(e.message)))
+      const table = new Table({
+        head: ['Slug', 'Key', 'Secret'],
+        colWidths: [slugWidth, keyWidth, secretWidth],
+        style: { head: ['white']}
+      })
+      response.data.forEach((app: App) => table.push([app.slug, app.api_key, app.api_secret]))
+
+      console.log(table.toString());
+    } catch (e) {
+      spinner.stop()
+      console.log(chalk.red('– Error: ' + chalk.bold(e.message)))
+    }
   }
 }
 

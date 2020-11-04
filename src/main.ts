@@ -13,9 +13,9 @@ import { tunnel } from 'modules/tunnel'
 loadConfig()
 
 const args = yargs(process.argv.slice(2))
-  .options('local', { hidden: true })
+  .options('local', { type: 'boolean', hidden: true })
   .command('auth', 'Login, logout, check', auth)
-  .command('app', 'Manage applications', application)
+  .command(application)
   .command(account)
   .command('tunnel', 'Dev tunnel', tunnel)
   .help()

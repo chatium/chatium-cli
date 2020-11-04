@@ -1,17 +1,13 @@
-import yargs from 'yargs'
+import { CommandModule } from 'yargs'
+
 import { createCommand } from './commands/createCommand'
 import { listCommand } from './commands/listCommand'
 
-export function application(yargs: yargs.Argv) {
-  yargs
-    .command('create [--name] [--description]', 'Create new application', (yargs) => createCommand(
-      yargs
-        .options({
-          slug: { type: 'string' },
-          name: { type: 'string' },
-          description: { type: 'string' },
-        })
-        .parse()
-    ))
-    .command('list', 'List applications', listCommand)
+export const application: CommandModule = {
+  command: 'app',
+  describe: 'Manage applications',
+  builder: yargs => yargs
+    .command(createCommand)
+    .command(listCommand),
+  handler: () => {}
 }
