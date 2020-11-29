@@ -12,7 +12,7 @@ const tunnel_1 = require("./modules/tunnel");
 config_1.loadConfig();
 const args = yargs_1.default(process.argv.slice(2))
     .options('local', { type: 'boolean', hidden: true })
-    .command('auth', 'Login, logout, check', auth_1.auth)
+    .command(auth_1.auth)
     .command(application_1.application)
     .command(account_1.account)
     .command(tunnel_1.tunnel)

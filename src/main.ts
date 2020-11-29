@@ -14,7 +14,7 @@ loadConfig()
 
 const args = yargs(process.argv.slice(2))
   .options('local', { type: 'boolean', hidden: true })
-  .command('auth', 'Login, logout, check', auth)
+  .command(auth)
   .command(application)
   .command(account)
   .command(tunnel)
