@@ -7,6 +7,8 @@ const config_1 = require("../../../config");
 const api_1 = require("../../../api");
 const ora_1 = tslib_1.__importDefault(require("ora"));
 exports.checkCommand = {
+    command: 'check',
+    describe: 'Check authorization',
     handler: async () => {
         if (config_1.config.token === null) {
             console.log(chalk_1.default.red('– Not authorized'));

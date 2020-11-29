@@ -5,6 +5,8 @@ import ora from 'ora'
 import { CommandModule } from 'yargs'
 
 export const checkCommand: CommandModule = {
+  command: 'check',
+  describe: 'Check authorization',
   handler: async () => {
     if (config.token === null) {
       console.log(chalk.red('– Not authorized'))
