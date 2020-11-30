@@ -9,6 +9,7 @@ import { auth } from 'modules/auth'
 import { application } from 'modules/application'
 import { account } from 'modules/account'
 import { tunnel } from 'modules/tunnel'
+import { creator } from 'modules/creator'
 
 loadConfig()
 
@@ -18,6 +19,7 @@ const args = yargs(process.argv.slice(2))
   .command(application)
   .command(account)
   .command(tunnel)
+  .command(creator)
   .help()
   .epilogue('for more information, find our manual at https://chatium.com')
   .showHelpOnFail(true)

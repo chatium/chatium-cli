@@ -9,6 +9,7 @@ const auth_1 = require("./modules/auth");
 const application_1 = require("./modules/application");
 const account_1 = require("./modules/account");
 const tunnel_1 = require("./modules/tunnel");
+const creator_1 = require("./modules/creator");
 config_1.loadConfig();
 const args = yargs_1.default(process.argv.slice(2))
     .options('local', { type: 'boolean', hidden: true })
@@ -16,6 +17,7 @@ const args = yargs_1.default(process.argv.slice(2))
     .command(application_1.application)
     .command(account_1.account)
     .command(tunnel_1.tunnel)
+    .command(creator_1.creator)
     .help()
     .epilogue('for more information, find our manual at https://chatium.com')
     .showHelpOnFail(true)

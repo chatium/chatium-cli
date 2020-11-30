@@ -1,13 +1,13 @@
 import { CommandModule } from 'yargs'
 
-import { createCommand } from './commands/createCommand'
+import { registerCommand } from './commands/registerCommand'
 import { listCommand } from './commands/listCommand'
 
 export const application: CommandModule = {
   command: 'app',
   describe: 'Manage applications',
   builder: yargs => yargs
-    .command(createCommand)
+    .command(registerCommand)
     .command(listCommand),
   handler: () => {}
 }
