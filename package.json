@@ -1,6 +1,6 @@
 {
   "name": "chatium",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chatium Cli Tool",
   "main": "main.js",
   "bin": "./dist/main.js",
