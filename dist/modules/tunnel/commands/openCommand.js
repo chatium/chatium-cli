@@ -6,7 +6,6 @@ const localConnectionsRegistry_1 = require("../utils/localConnectionsRegistry");
 const ResilientWsClient_1 = tslib_1.__importDefault(require("../utils/ResilientWsClient"));
 const tunnelWsRouter_1 = require("../utils/tunnelWsRouter");
 async function openCommand(options) {
-    console.log(';OPEN');
     const ws = new ResilientWsClient_1.default(`${options.server}/tunnel`, {
         tunnelLocalPort: options.port,
         requestArgs: {

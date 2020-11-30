@@ -1,3 +1,5 @@
+import { parse, stringify } from 'envfile'
+import fs from "fs"
 import { CommandModule } from 'yargs'
 import { AxiosError } from 'axios'
 import chalk from 'chalk'
@@ -10,6 +12,7 @@ interface Options {
   slug?: string
   name?: string
   description?: string
+  save?: boolean
 }
 
 export const createCommand: CommandModule = {
@@ -20,6 +23,7 @@ export const createCommand: CommandModule = {
       slug: { type: 'string' },
       name: { type: 'string' },
       description: { type: 'string' },
+      save: { type: 'boolean' },
     }),
   handler: async (args) => {
     const prompt = await inquirer.prompt<Options>([
@@ -56,6 +60,21 @@ export const createCommand: CommandModule = {
       console.log(chalk.green(' api_secret: ' + chalk.bold(response.data.api_secret)))
       console.log('')
       console.log(chalk.white('Use', chalk.cyan('chatium app list'), 'to show all yours applications.'))
+      console.log('')
+
+      if (args.save) {
+        const data: Record<string, unknown> = fs.existsSync('.env') ? parse(fs.readFileSync('.env').toString()) : {}
+        if (data.API_KEY && data.API_KEY !== response.data.api_key) {
+          console.log(chalk.white('Changed .env file API_KEY from', chalk.bold(data.API_KEY), 'to', chalk.bold(response.data.api_key)))
+        }
+        data.API_KEY = response.data.api_key
+        if (data.API_SECRET && data.API_SECRET !== response.data.api_secret) {
+          console.log(chalk.white('Changed .env file API_SECRET from', chalk.bold(data.API_SECRET), 'to', chalk.bold(response.data.api_secret)))
+        }
+        data.API_SECRET = response.data.api_secret
+        fs.writeFileSync('.env', stringify(data))
+        console.log(chalk.green('+ Saved .env file'))
+      }
     } catch (e) {
       spinner.stop()
 

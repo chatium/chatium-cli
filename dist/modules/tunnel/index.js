@@ -7,7 +7,6 @@ exports.tunnel = {
     command: 'tunnel <port>',
     describe: 'Websocket tunnel client for convenient Chatium app development',
     builder: (yargs) => yargs
-        .demandCommand(1)
         .options({
         server: {
             type: 'string',
@@ -21,7 +20,7 @@ exports.tunnel = {
         },
     }),
     handler: async (args) => {
-        const port = parseInt(args._.pop());
+        const port = parseInt(args.port);
         await openCommand_1.openCommand({
             server: args.server,
             domain: args.domain,

@@ -9,7 +9,6 @@ interface Options {
 }
 
 export async function openCommand(options: Options) {
-  console.log(';OPEN')
   const ws: ResilientWsClient = new ResilientWsClient(`${options.server}/tunnel`, {
     tunnelLocalPort: options.port,
     requestArgs: {
