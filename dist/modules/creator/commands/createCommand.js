@@ -24,10 +24,10 @@ async function createCommand(options) {
     console.log(chalk_1.default.white('1. Go to project folder'));
     console.log(chalk_1.default.white('   ', chalk_1.default.bold(`cd ${options.name}`)));
     console.log('');
-    console.log(chalk_1.default.white('2. Register application and store credentials'));
-    console.log(chalk_1.default.white('   ', chalk_1.default.bold(`chatium app create --slug=${options.name} --save`)));
+    console.log(chalk_1.default.white('2. Register application and save credentials'));
+    console.log(chalk_1.default.white('   ', chalk_1.default.bold(`chatium app register --slug=${options.name} --save`)));
     console.log('');
-    console.log(chalk_1.default.white('3. Start development server'));
+    console.log(chalk_1.default.white('3. Start development server (port :5050 by default)'));
     console.log(chalk_1.default.white('   ', chalk_1.default.bold('npm run development')));
     console.log('');
     console.log(chalk_1.default.white('4. Start development tunnel if needed'));
