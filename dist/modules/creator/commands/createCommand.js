@@ -4,6 +4,7 @@ exports.createCommand = void 0;
 const tslib_1 = require("tslib");
 const chalk_1 = tslib_1.__importDefault(require("chalk"));
 const execa_1 = tslib_1.__importDefault(require("execa"));
+const nanoid_1 = require("nanoid");
 const ora_1 = tslib_1.__importDefault(require("ora"));
 const rimraf_1 = tslib_1.__importDefault(require("rimraf"));
 async function createCommand(options) {
@@ -19,6 +20,7 @@ async function createCommand(options) {
     const dependenciesSpinner = ora_1.default(chalk_1.default.white('Downloading dependencies...')).start();
     await execa_1.default('npm', ['install'], { cwd: options.path });
     dependenciesSpinner.succeed(chalk_1.default.white('Dependencies downloaded'));
+    const domain = nanoid_1.customAlphabet('qwertyuiopasdfghjklzxcvbnm1234567890', 8)();
     console.log('');
     console.log(chalk_1.default.white('Next steps:'));
     console.log(chalk_1.default.white('1. Go to project folder'));
@@ -30,8 +32,14 @@ async function createCommand(options) {
     console.log(chalk_1.default.white('3. Start development server (port :5050 by default)'));
     console.log(chalk_1.default.white('   ', chalk_1.default.bold('npm run development')));
     console.log('');
-    console.log(chalk_1.default.white('4. Start development tunnel if needed'));
-    console.log(chalk_1.default.white('   ', chalk_1.default.bold('chatium tunnel 5050')));
+    console.log(chalk_1.default.white(`4. Start development tunnel (random tunnel domain is "${domain}")`));
+    console.log(chalk_1.default.white('   ', chalk_1.default.bold(`chatium tunnel 5050 --domain=${domain}`)));
+    console.log('');
+    console.log(chalk_1.default.white('5. Open your application in browser or mobile'));
+    console.log(chalk_1.default.white('   ', chalk_1.default.bold(`https://chatium.com/app/${options.name}.${domain}/`)));
+    console.log('');
+    console.log(chalk_1.default.white('6. Read documentation'));
+    console.log(chalk_1.default.white('   ', chalk_1.default.bold('https://dev.chatium.com/')));
 }
 exports.createCommand = createCommand;
 //# sourceMappingURL=createCommand.js.map
